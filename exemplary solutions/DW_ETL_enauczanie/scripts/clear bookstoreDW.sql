@@ -1,0 +1,11 @@
+use bookstoreDW;
+
+DELETE FROM Book_sale;
+DELETE FROM Authorship;
+DELETE FROM Seller;
+DELETE FROM Author;
+DELETE FROM Book;
+DELETE FROM Bookstore;
+DELETE FROM Date;
+DELETE FROM Junk;
+DELETE FROM Time;
