@@ -33,7 +33,7 @@ CREATE TABLE Sprzedawcy (
 
 CREATE TABLE Klienci (
 	ID int NOT NULL PRIMARY KEY IDENTITY (1,1),
-	"Osoba_fizyczna/Firma" varchar(20) CHECK ("Osoba_fizyczna/Firma"='Osoba_fizyczna' OR "Osoba_fizyczna/Firma"='Firma') NOT NULL,
+	os_fiz_or_firma varchar(20) CHECK (os_fiz_or_firma='Osoba_fizyczna' OR os_fiz_or_firma='Firma') NOT NULL,
 	Suma_należności money CHECK (Suma_należności >= 0.00 AND Suma_należności <= 1000000000.00) NOT NULL,
 	Nazwa nvarchar(200) NOT NULL,
 	Lokalizacja int NOT NULL REFERENCES Lokalizacje(ID) ON UPDATE CASCADE ON DELETE CASCADE

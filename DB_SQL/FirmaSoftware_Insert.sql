@@ -31,7 +31,7 @@ INSERT INTO Sprzedawcy (Nazwa, Lokalizacja) VALUES
 	('Tech Zone', 1),
 	('Software Avenue', 1);
 
-INSERT INTO Klienci ([Osoba_fizyczna/Firma], Suma_należności, Nazwa, Lokalizacja) VALUES
+INSERT INTO Klienci (os_fiz_or_firma, Suma_należności, Nazwa, Lokalizacja) VALUES
     ('Osoba_fizyczna', 0.00, 'Jan Kowalski',1),
     ('Osoba_fizyczna', 0.00, 'Anna Nowak',2),
     ('Firma', 0.00, 'Aviko Polska',3),
