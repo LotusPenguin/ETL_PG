@@ -37,7 +37,7 @@ CREATE TABLE Programy (
 
 -- Tworzenie tabeli Junk
 CREATE TABLE Junk (
-    Junk_id INT PRIMARY KEY IDENTITY(1,1),
+    ID_junk INT PRIMARY KEY IDENTITY(1,1),
     Plan_platnosci VARCHAR(100)
 );
 
@@ -50,7 +50,7 @@ CREATE TABLE Podpisanie_umowy_licencyjnej (
     ID_sprzedawcy INT NOT NULL REFERENCES Sprzedawcy(ID_sprzedawcy),
     ID_klienta INT NOT NULL REFERENCES Klienci(ID_klienta),
     ID_programu INT NOT NULL REFERENCES Programy(ID_programu),
-    Junk_id INT NOT NULL REFERENCES Junk(Junk_id),
+    ID_junk INT NOT NULL REFERENCES Junk(ID_junk),
     Numer_umowy VARCHAR(100)
 );
 
