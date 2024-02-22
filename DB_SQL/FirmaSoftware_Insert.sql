@@ -1,4 +1,6 @@
-﻿INSERT INTO Lokalizacje (Kraj) VALUES
+﻿USE SoftwareDB;
+
+INSERT INTO Lokalizacje (Kraj) VALUES
 	('Polska'),
 	('Niemcy'),
 	('Hiszpania'),
