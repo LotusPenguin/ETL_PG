@@ -1,7 +1,8 @@
 USE HDsoftware
 GO
 
-If (object_id('vETLDimJunk') is not null) Drop View vETLDimJunk;
+IF (object_id('vETLDimJunk') is not null) DROP VIEW vETLDimJunk;
+
 GO
 CREATE VIEW vETLDimJunk
 AS
