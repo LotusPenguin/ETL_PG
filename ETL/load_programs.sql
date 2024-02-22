@@ -14,7 +14,7 @@ SELECT DISTINCT
 	[Nazwa_handlowa] = [Nazwa_handlowa],
 	[Data_zakonczenia_wsparcia] = [Data_zakonczenia_wsparcia],
 	[Data_wydania] = [Data_wydania]
-FROM ???.dbo.Programy;
+FROM SoftwareDB.dbo.Programy;
 GO
 
 MERGE INTO Programy AS TT
