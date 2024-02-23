@@ -42,14 +42,14 @@ FROM
 		Ilosc_kobiet = (
 			SELECT COUNT(*) FROM AKCJE_STRAZY_POZARNEJ.dbo.Strazacy JOIN AKCJE_STRAZY_POZARNEJ.dbo.Przynaleznosc_do_zespolu on
 			AKCJE_STRAZY_POZARNEJ.dbo.Strazacy.PESEL = AKCJE_STRAZY_POZARNEJ.dbo.Przynaleznosc_do_zespolu.PESEL
-			WHERE AKCJE_STRAZY_POZARNEJ.dbo.Strazacy.P³eæ = 'K'
+			WHERE AKCJE_STRAZY_POZARNEJ.dbo.Strazacy.PÅ‚eÄ‡ = 'K'
 			GROUP BY AKCJE_STRAZY_POZARNEJ.dbo.Przynaleznosc_do_zespolu.ID_zespolu
 			HAVING AKCJE_STRAZY_POZARNEJ.dbo.Przynaleznosc_do_zespolu.ID_zespolu = zespol.ID_zespolu
 		),
 		Ilosc_mezczyzn = (
 			SELECT COUNT(*) FROM AKCJE_STRAZY_POZARNEJ.dbo.Strazacy JOIN AKCJE_STRAZY_POZARNEJ.dbo.Przynaleznosc_do_zespolu on
 			AKCJE_STRAZY_POZARNEJ.dbo.Strazacy.PESEL = AKCJE_STRAZY_POZARNEJ.dbo.Przynaleznosc_do_zespolu.PESEL
-			WHERE AKCJE_STRAZY_POZARNEJ.dbo.Strazacy.P³eæ = 'M'
+			WHERE AKCJE_STRAZY_POZARNEJ.dbo.Strazacy.PÅ‚eÄ‡ = 'M'
 			GROUP BY AKCJE_STRAZY_POZARNEJ.dbo.Przynaleznosc_do_zespolu.ID_zespolu
 			HAVING AKCJE_STRAZY_POZARNEJ.dbo.Przynaleznosc_do_zespolu.ID_zespolu = zespol.ID_zespolu
 		),

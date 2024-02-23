@@ -1,7 +1,8 @@
 USE HDsoftware
 GO
 
-If (object_id('vETLDimSprzedawcy') is not null) Drop View vETLDimSprzedawcy;
+IF (object_id('vETLDimSprzedawcy') is not null) DROP VIEW vETLDimSprzedawcy;
+
 GO
 CREATE VIEW vETLDimSprzedawcy
 AS
@@ -19,4 +20,4 @@ WHEN NOT MATCHED BY TARGET THEN
 WHEN NOT MATCHED BY SOURCE THEN
     DELETE;
 
-Drop View vETLDimSprzedawcy;
+DROP VIEW vETLDimSprzedawcy;

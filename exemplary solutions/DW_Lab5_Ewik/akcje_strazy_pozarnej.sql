@@ -1,4 +1,4 @@
-USE AKCJE_STRAZY_POZARNEJ
+ï»¿USE AKCJE_STRAZY_POZARNEJ
 
 CREATE TABLE Akcje(
 	Numer_wezwania char(10) PRIMARY KEY,
@@ -11,7 +11,7 @@ CREATE TABLE Strazacy(
 	Imie varchar(50),
 	Nazwisko varchar(50),
 	PESEL char(11) PRIMARY KEY,
-	P³eæ char(1) check(P³eæ in ('K', 'M')),
+	PÅ‚eÄ‡ char(1) check(PÅ‚eÄ‡ in ('K', 'M')),
 	Data_urodzenia date,
 	Data_rozpoczecia_pracy date,
 	Data_zakonczenia_pracy date NULL

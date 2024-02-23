@@ -60,6 +60,7 @@ CREATE TABLE Programy (
 	Czy_wspierany char(3) CHECK (Czy_wspieranY='TAK' OR Czy_wspieranY='NIE') NOT NULL,
 	Numer_zlecenia varchar(100) REFERENCES Zlecenia(Numer_umowy) ON UPDATE NO ACTION ON DELETE NO ACTION,
 	Data_wydania date,
+	Data_zakończenia_wsparcia date,
 	ID_Producenta int NOT NULL REFERENCES Producenci_oprogramowania(ID) ON UPDATE CASCADE ON DELETE CASCADE,
 )
 

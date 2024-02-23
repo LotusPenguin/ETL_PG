@@ -1,3 +1,6 @@
+USE HDsoftware
+go
+
 INSERT INTO Sprzedawcy (Nazwa) VALUES
 ('SoftShop Solutions'),
 ('CodeCrafters'),
@@ -79,7 +82,7 @@ INSERT INTO Podpisanie_umowy_dystrybucyjnej (Numer_umowy, ID_sprzedawcy, ID_prog
 ('DTB/22/0004', 3, 4, 15, 17),
 ('DTB/22/0005', 4, 4, 16, 36);
 
-INSERT INTO Podpisanie_umowy_licencyjnej (Numer_umowy, ID_sprzedawcy, ID_klienta, ID_programu, Junk_id, Kwota_platnosci, Data_zawarcia, Data_wygasniecia) VALUES
+INSERT INTO Podpisanie_umowy_licencyjnej (Numer_umowy, ID_sprzedawcy, ID_klienta, ID_programu, ID_junk, Kwota_platnosci, Data_zawarcia, Data_wygasniecia) VALUES
 ('LIC/22/0001', 1, 1, 1, 2, 69.99, 11, 12),
 ('LIC/22/0002', 1, 2, 1, 2, 69.99, 11, 12),
 ('LIC/22/0003', 2, 3, 2, 1, 199.99, 13, 35),

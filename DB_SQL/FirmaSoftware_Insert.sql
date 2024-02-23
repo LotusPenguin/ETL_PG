@@ -1,4 +1,6 @@
-﻿INSERT INTO Lokalizacje (Kraj) VALUES
+﻿USE SoftwareDB;
+
+INSERT INTO Lokalizacje (Kraj) VALUES
 	('Polska'),
 	('Niemcy'),
 	('Hiszpania'),
@@ -52,17 +54,17 @@ INSERT INTO Zlecenia (Numer_umowy, Data_złożenia, Termin_realizacji, Wytyczne_
 	('22/12/6', '2022-12-21', '2023-01-04', 'Oprogramowanie powinno umożliwiać edycję i ulepszanie zdjęć i filmów w oparciu o silnik sztucznej inteligencji', 'Komercyjna', 35000.00, 'NIE', 7, 8),
 	('23/01/1', '2023-01-22', '2023-01-27', 'Oprogramowanie powinno umożliwiać zarządzanie zadaniami i zasobami projektów', 'Komercyjna', 40000.00, 'NIE', 6, 10);
 
-INSERT INTO Programy (Nazwa_handlowa, Aktualna_wersja, Platforma, Rodzaj, Opis, Czy_wspierany, Numer_zlecenia, Data_wydania, ID_Producenta) VALUES
-	('SuperFaktury', '4.0', 'Windows', 'Finanse', 'Program do fakturowania i zarządzania finansami małych firm', 'TAK', NULL,'2021-03-19',1),
-	('Projektant 3D', '1.5', 'Windows, Mac', 'Multimedia', 'Program do tworzenia projektów 3D', 'TAK', NULL,'2022-07-26',2),
-	('Graficzny Edytor', '2.0', 'Windows, Mac', 'Multimedia', 'Program do tworzenia i edytowania grafiki rastrowej i wektorowej', 'TAK', NULL,'2023-12-14',3),
-	('Zarządzanie Zasobami', '3.0', 'Windows', 'Zarządzanie', 'Program do zarządzania zasobami ludzkimi i finansowymi w firmie', 'NIE', NULL,'2023-12-14',1),
-	('DocView PDF', '1.0', 'Windows, Mac', 'Biurowe', 'Program do przeglądania i drukowania dokumentów PDF', 'TAK', NULL,'2023-02-14',1),
-	('Analiza Danych', '2.5', 'Windows, Mac', 'Analiza Danych', 'Program do analizy danych i tworzenia raportów', 'TAK', '22/12/4','2018-12-24',4),
-	('Smart Slideshow', '1.0', 'Windows, Mac', 'Biurowe', 'Program do tworzenia profesjonalnych prezentacji multimedialnych', 'TAK', NULL,'2019-10-04',1),
-	('WWW Creator', '3.0', 'Windows, Mac', 'Kreator z GUI', 'Program do tworzenia stron internetowych bez znajomości języków programowania', 'TAK', '22/12/5','2023-12-02',5),
-	('Logo Edytor', '2.5', 'Windows, Mac', 'Multimedia', 'Program do tworzenia i logotypów', 'NIE', NULL,'2023-12-14',1),
-	('Katalogowanie Zasobów', '1.0', 'Windows', 'Zarządzanie', 'Program do katalogowania i zarządzania zasobami w firmie', 'NIE', NULL,'2023-12-14',5);
+INSERT INTO Programy (Nazwa_handlowa, Aktualna_wersja, Platforma, Rodzaj, Opis, Czy_wspierany, Numer_zlecenia, Data_wydania, Data_zakończenia_wsparcia, ID_Producenta) VALUES
+	('SuperFaktury', '4.0', 'Windows', 'Finanse', 'Program do fakturowania i zarządzania finansami małych firm', 'TAK', NULL,'2021-03-19','2026-03-19',1),
+	('Projektant 3D', '1.5', 'Windows, Mac', 'Multimedia', 'Program do tworzenia projektów 3D', 'TAK', NULL,'2022-07-26','2027-07-26',2),
+	('Graficzny Edytor', '2.0', 'Windows, Mac', 'Multimedia', 'Program do tworzenia i edytowania grafiki rastrowej i wektorowej', 'TAK', NULL,'2023-12-14','2028-12-14',3),
+	('Zarządzanie Zasobami', '3.0', 'Windows', 'Zarządzanie', 'Program do zarządzania zasobami ludzkimi i finansowymi w firmie', 'TAK', NULL,'2023-12-14','2028-12-14',1),
+	('DocView PDF', '1.0', 'Windows, Mac', 'Biurowe', 'Program do przeglądania i drukowania dokumentów PDF', 'TAK', NULL,'2023-02-14','2028-02-14',1),
+	('Analiza Danych', '2.5', 'Windows, Mac', 'Analiza Danych', 'Program do analizy danych i tworzenia raportów', 'NIE', '22/12/4','2018-12-24','2023-12-24',4),
+	('Smart Slideshow', '1.0', 'Windows, Mac', 'Biurowe', 'Program do tworzenia profesjonalnych prezentacji multimedialnych', 'TAK', NULL,'2019-10-04','2025-10-04',1),
+	('WWW Creator', '3.0', 'Windows, Mac', 'Kreator z GUI', 'Program do tworzenia stron internetowych bez znajomości języków programowania', 'TAK', '22/12/5','2023-12-02','2028-12-02',5),
+	('Logo Edytor', '2.5', 'Windows, Mac', 'Multimedia', 'Program do tworzenia i logotypów', 'TAK', NULL,'2023-12-14','2028-12-14',1),
+	('Katalogowanie Zasobów', '1.0', 'Windows', 'Zarządzanie', 'Program do katalogowania i zarządzania zasobami w firmie', 'TAK', NULL,'2023-12-14','2028-12-14',5);
 
 INSERT INTO Umowy_dystrybucyjne (Nr_umowy, ID_Sprzedawcy, Data_zawarcia, Data_wygaśnięcia) VALUES
 	('DTB/22/0001', 7, '2022-12-15', '2023-12-14'), 
