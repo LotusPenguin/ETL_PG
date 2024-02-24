@@ -66,6 +66,7 @@ INSERT INTO Programy (Nazwa_handlowa, Aktualna_wersja, Platforma, Rodzaj, Opis, 
 	('Logo Edytor', '2.5', 'Windows, Mac', 'Multimedia', 'Program do tworzenia i logotypów', 'TAK', NULL,'2023-12-14','2028-12-14',1),
 	('Katalogowanie Zasobów', '1.0', 'Windows', 'Zarządzanie', 'Program do katalogowania i zarządzania zasobami w firmie', 'TAK', NULL,'2023-12-14','2028-12-14',5);
 
+/*
 INSERT INTO Umowy_dystrybucyjne (Nr_umowy, ID_Sprzedawcy, Data_zawarcia, Data_wygaśnięcia) VALUES
 	('DTB/22/0001', 7, '2022-12-15', '2023-12-14'), 
     ('DTB/22/0002', 2, '2022-12-16', '2023-12-15'), 
@@ -82,7 +83,7 @@ INSERT INTO Umowy_dystrybucyjne (Nr_umowy, ID_Sprzedawcy, Data_zawarcia, Data_wy
     ('DTB/22/0013', 10, '2022-12-27', '2023-12-26'),
     ('DTB/22/0014', 11, '2022-12-28', '2023-12-27'),
     ('DTB/22/0015', 12, '2022-12-29', '2023-12-28');
-
+	
 INSERT INTO Dystrybucja (Nr_umowy, Nazwa_handlowa) VALUES
 	('DTB/22/0001', 'Projektant 3D'),
 	('DTB/22/0001', 'Graficzny Edytor'),
@@ -105,7 +106,7 @@ INSERT INTO Dystrybucja (Nr_umowy, Nazwa_handlowa) VALUES
 	('DTB/22/0013', 'SuperFaktury'),
 	('DTB/22/0014', 'SuperFaktury'),
 	('DTB/22/0015', 'SuperFaktury');
-
+	
 INSERT INTO Umowy_licencyjne (Numer_umowy, Data_zawarcia, Data_wygaśnięcia, Rodzaj_licencji, ID_Sprzedawcy, ID_Klienta, Nazwa_programu, Kwota_płatności_okresowych, Plan_płatności) VALUES
 	('LIC/22/0001', '2022-12-15', '2023-12-14', 'Na osobę', 11, 1, 'SuperFaktury', 100.00, 'Miesięcznie'),
 	('LIC/22/0002', '2022-12-16', '2024-12-15', 'Na osobę', 12, 2, 'SuperFaktury', 250.00, 'Kwartalnie'),
@@ -132,3 +133,4 @@ INSERT INTO Faktury (Numer_faktury, Data_wystawienia, Termin_płatności, Status
 
 INSERT Faktury (Numer_faktury, Data_wystawienia, Termin_płatności, Status_opłacenia, Kwota_należności, Numer_umowy) VALUES
 	('23/01/1678', '2023-01-22', '2023-01-29', 'NIE', 200.00, 'LIC/22/0010');
+*/
