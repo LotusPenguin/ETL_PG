@@ -20,9 +20,7 @@ FROM SoftwareDB.dbo.Umowy_licencyjne as umowy
 GO
 	MERGE INTO Podpisanie_umowy_Licencyjnej as TT
 	USING vETLFPodpisanieUmowyLicencyjnej as ST
-		ON TT.ID_sprzedawcy = ST.ID_Sprzedawcy
-		AND TT.Numer_umowy = ST.Nr_umowy
-        AND TT.ID_klienta = ST.ID_Klienta
+		ON TT.Numer_umowy = ST.Nr_umowy
 			WHEN Not Matched
 				THEN
 					INSERT
@@ -30,8 +28,8 @@ GO
                         (SELECT ID_daty FROM Data WHERE Data = ST.Data_zawarcia),
 						(SELECT ID_daty FROM Data WHERE Data = ST.Data_wygaśnięcia),
                         ST.Kwota_platnosci,
-						ST.ID_Sprzedawcy,
-                        ST.ID_Klienta,
+						(SELECT ID_sprzedawcy FROM Sprzedawcy WHERE Nazwa = (SELECT Nazwa FROM SoftwareDB.dbo.Sprzedawcy WHERE ID = ST.ID_Sprzedawcy)),
+                        (SELECT ID_klienta FROM Klienci WHERE Nazwa = (SELECT Nazwa FROM SoftwareDB.dbo.Klienci WHERE ID = ST.ID_Klienta)),
                         (SELECT ID_programu FROM Programy WHERE Nazwa_handlowa = ST.Nazwa_handlowa),
 						(SELECT ID_junk FROM JUNK WHERE Plan_platnosci = ST.Plan_platnosci),
                         ST.Nr_umowy

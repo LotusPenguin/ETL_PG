@@ -17,13 +17,12 @@ FROM SoftwareDB.dbo.Umowy_dystrybucyjne as umowy, SoftwareDB.dbo.Dystrybucja as 
 GO
 	MERGE INTO Podpisanie_umowy_dystrybucyjnej as TT
 	USING vETLFPodpisanieUmowyDystrybucyjnej as ST
-		ON TT.ID_sprzedawcy = ST.ID_Sprzedawcy
-		AND TT.Numer_umowy = ST.Nr_umowy
+		ON TT.Numer_umowy = ST.Nr_umowy
 			WHEN Not Matched
 				THEN
 					INSERT
 					Values (
-						ST.ID_Sprzedawcy,
+						(SELECT ID_sprzedawcy FROM Sprzedawcy WHERE Nazwa = (SELECT Nazwa FROM SoftwareDB.dbo.Sprzedawcy WHERE ID = ST.ID_Sprzedawcy)),
 						(SELECT ID_daty FROM Data WHERE Data = ST.Data_zawarcia),
 						(SELECT ID_daty FROM Data WHERE Data = ST.Data_wygaśnięcia),
 						(SELECT ID_programu FROM Programy WHERE Nazwa_handlowa = ST.Nazwa_handlowa),
