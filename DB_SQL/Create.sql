@@ -68,8 +68,8 @@ CREATE TABLE Programy (
 CREATE TABLE Umowy_dystrybucyjne (
 	Nr_umowy varchar(100) NOT NULL PRIMARY KEY,
 	ID_Sprzedawcy int NOT NULL REFERENCES Sprzedawcy(ID) ON UPDATE CASCADE ON DELETE CASCADE,
-	Data_zawarcia date CHECK (Data_zawarcia > '2022-12-14') NOT NULL,
-	Data_wygaśnięcia date CHECK (Data_wygaśnięcia > '2022-12-14') NOT NULL
+	Data_zawarcia date CHECK (Data_zawarcia > '2010-12-14') NOT NULL,
+	Data_wygaśnięcia date CHECK (Data_wygaśnięcia > '2010-12-14') NOT NULL
 )
 
 CREATE TABLE Umowy_licencyjne (
@@ -85,7 +85,7 @@ CREATE TABLE Umowy_licencyjne (
 )
 
 CREATE TABLE Faktury (
-	Numer_faktury varchar(100) NOT NULL PRIMARY KEY,
+	Numer_faktury int NOT NULL PRIMARY KEY,
 	Data_wystawienia date NOT NULL,
 	Termin_płatności date NOT NULL,
 	Status_opłacenia char(3) CHECK (Status_opłacenia='TAK' OR Status_opłacenia='NIE') NOT NULL,
