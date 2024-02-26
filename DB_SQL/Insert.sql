@@ -19,7 +19,7 @@ INSERT INTO Producenci_oprogramowania (Nazwa_handlowa, Lokalizacja, Sektor_dzia�
 	('IntelligenTech', 2, 'Oprogramowanie sztucznej inteligencji', 'TAK'),
 	('PlanSoft', 3, 'Oprogramowanie do planowania zasobów przedsiębiorstwa', 'TAK'),
 	('PR Solutions', 1, 'Oprogramowanie do zarządzania relacjami z klientami', 'TAK'),
-	('Technologie Przyszłości', 2, 'Oprogramowanie do wirtualnej rzeczywistości', 'NIE');
+	('Future Technologies', 2, 'Oprogramowanie do wirtualnej rzeczywistości', 'NIE');
 
 /*
 INSERT INTO Sprzedawcy (Nazwa, Lokalizacja) VALUES
@@ -62,13 +62,13 @@ INSERT INTO Programy (Nazwa_handlowa, Aktualna_wersja, Platforma, Rodzaj, Opis, 
 	('SuperFaktury', '4.0', 'Windows', 'Finanse', 'Program do fakturowania i zarządzania finansami małych firm', 'TAK', NULL,'2021-03-19','2026-03-19',1),
 	('Projektant 3D', '1.5', 'Windows, Mac', 'Multimedia', 'Program do tworzenia projektów 3D', 'TAK', NULL,'2022-07-26','2027-07-26',2),
 	('Graficzny Edytor', '2.0', 'Windows, Mac', 'Multimedia', 'Program do tworzenia i edytowania grafiki rastrowej i wektorowej', 'TAK', NULL,'2023-12-14','2028-12-14',3),
-	('Zarządzanie Zasobami', '3.0', 'Windows', 'Zarządzanie', 'Program do zarządzania zasobami ludzkimi i finansowymi w firmie', 'TAK', NULL,'2023-12-14','2028-12-14',1),
+	('Zarzadzanie Zasobami', '3.0', 'Windows', 'Zarządzanie', 'Program do zarządzania zasobami ludzkimi i finansowymi w firmie', 'TAK', NULL,'2023-12-14','2028-12-14',1),
 	('DocView PDF', '1.0', 'Windows, Mac', 'Biurowe', 'Program do przeglądania i drukowania dokumentów PDF', 'TAK', NULL,'2023-02-14','2028-02-14',1),
 	('Analiza Danych', '2.5', 'Windows, Mac', 'Analiza Danych', 'Program do analizy danych i tworzenia raportów', 'NIE', '22/12/4','2018-12-24','2023-12-24',4),
 	('Smart Slideshow', '1.0', 'Windows, Mac', 'Biurowe', 'Program do tworzenia profesjonalnych prezentacji multimedialnych', 'TAK', NULL,'2019-10-04','2025-10-04',1),
 	('WWW Creator', '3.0', 'Windows, Mac', 'Kreator z GUI', 'Program do tworzenia stron internetowych bez znajomości języków programowania', 'TAK', '22/12/5','2023-12-02','2028-12-02',5),
 	('Logo Edytor', '2.5', 'Windows, Mac', 'Multimedia', 'Program do tworzenia i logotypów', 'TAK', NULL,'2023-12-14','2028-12-14',1),
-	('Katalogowanie Zasobów', '1.0', 'Windows', 'Zarządzanie', 'Program do katalogowania i zarządzania zasobami w firmie', 'TAK', NULL,'2023-12-14','2028-12-14',5);
+	('Katalogowanie Zasobow', '1.0', 'Windows', 'Zarządzanie', 'Program do katalogowania i zarządzania zasobami w firmie', 'TAK', NULL,'2023-12-14','2028-12-14',5);
 
 /*
 INSERT INTO Umowy_dystrybucyjne (Nr_umowy, ID_Sprzedawcy, Data_zawarcia, Data_wygaśnięcia) VALUES
