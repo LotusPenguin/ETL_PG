@@ -1,11 +1,13 @@
 ﻿USE SoftwareDB;
 
+/*
 INSERT INTO Lokalizacje (Kraj) VALUES
 	('Polska'),
 	('Niemcy'),
 	('Hiszpania'),
 	('Niger'),
 	('Wielka Brytania')
+*/
 
 INSERT INTO Producenci_oprogramowania (Nazwa_handlowa, Lokalizacja, Sektor_działalności, Czy_aktywny) VALUES 
 	('SoftSystem', 1, 'Oprogramowanie do zarządzania firmą', 'TAK'),
@@ -19,6 +21,7 @@ INSERT INTO Producenci_oprogramowania (Nazwa_handlowa, Lokalizacja, Sektor_dzia�
 	('PR Solutions', 1, 'Oprogramowanie do zarządzania relacjami z klientami', 'TAK'),
 	('Technologie Przyszłości', 2, 'Oprogramowanie do wirtualnej rzeczywistości', 'NIE');
 
+/*
 INSERT INTO Sprzedawcy (Nazwa, Lokalizacja) VALUES
 	('SoftShop Solutions', 1),
 	('CodeCrafters', 2),
@@ -45,6 +48,7 @@ INSERT INTO Klienci (os_fiz_or_firma, Suma_należności, Nazwa, Lokalizacja) VAL
     ('Firma', 0.00, 'Action',5),
     ('Firma', 0.00, 'EcoTechnologie Polska',1);
 
+*/
 INSERT INTO Zlecenia (Numer_umowy, Data_złożenia, Termin_realizacji, Wytyczne_funkcjonalności, Rodzaj_licencji, Kwota_należności, Czy_zrealizowane, ID_Producenta, ID_Klienta) VALUES
 	('22/12/1', '2022-12-16', '2022-12-30', 'Oprogramowanie powinno umożliwiać śledzenie zapasów i generowanie raportów', 'Komercyjna', 10000.00, 'NIE', 8, 9),
 	('22/12/2', '2022-12-17', '2022-12-31', 'Oprogramowanie powinno umożliwiać zarządzanie rekordami pracowników i harmonogramami zmian', 'Komercyjna', 1500.00, 'NIE', 8, 9),
