@@ -19,7 +19,7 @@ tables2 = ["Umowy_licencyjne",
            "Dystrybucja"
 ]
 
-def CreateBulkInsertQuerry(tableName, filename):
+def CreateBulkInsertQuery(tableName, filename):
     return f"""
     USE SoftwareDB;
     BULK INSERT dbo.{tableName} 
@@ -30,7 +30,7 @@ def CreateBulkInsertQuerry(tableName, filename):
 def BulkInsertIntoDB(tablesName):
     try:
         for table in tablesName:
-            db_cursor.execute(CreateBulkInsertQuerry(table, table+".bulk"))
+            db_cursor.execute(CreateBulkInsertQuery(table, table + ".bulk"))
             connection.commit()
             print("BULK INSERT completed successfully.")
     except Exception as e:
