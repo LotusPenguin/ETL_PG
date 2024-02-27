@@ -22,8 +22,82 @@ def init(args):
     global i
     i = args
 
-embedded_dictionary = {}
+# Ładowanie danych z pliku JSON
+with open('../../bulks/dane.json') as f:
+    data = json.load(f)
 
+
+# Połączenie z bazą danych SQL Server
+dw_connection = pyodbc.connect(config.dw_connection_data)
+
+db_connection = pyodbc.connect(config.db_connection_data)
+
+dw_cursor = dw_connection.cursor()
+db_cursor = db_connection.cursor()
+
+# Iteracja przez dane z umów
+db_cursor.execute("""
+SELECT F.Numer_faktury, UL.Numer_umowy AS Nr_umowy_licencyjnej, F.Data_wystawienia AS Data_wystawienia_faktury, F.Kwota_należności, UL.Nazwa_programu, UD.Nr_umowy
+FROM Dystrybucja D
+JOIN Umowy_dystrybucyjne UD ON D.Nr_umowy = UD.Nr_umowy
+JOIN Umowy_licencyjne UL ON UD.ID_Sprzedawcy = UL.ID_Sprzedawcy AND UL.Data_zawarcia BETWEEN UD.Data_zawarcia AND UD.Data_wygaśnięcia
+JOIN Faktury F ON UL.Numer_umowy = F.Numer_umowy
+JOIN Programy P ON P.Nazwa_handlowa = UL.Nazwa_programu AND P.Nazwa_handlowa = D.Nazwa_handlowa
+""")
+wyniki_db = db_cursor.fetchall()
+
+# zyski = []
+
+### DEBUG ###
+# print(wyniki)
+# print(len(wyniki))
+# print(type(wyniki))
+# print(type(wyniki[0]))
+# print(type(wyniki[0][1]))
+
+# print(data['umowy'])
+# print(type(data['umowy']))
+# print(type(data['umowy'][0]))
+
+# dw_cursor.execute("SELECT ID_podpisania_umowy, Numer_umowy FROM Podpisanie_umowy_licencyjnej")
+# wyniki_dw = dw_cursor.fetchall()
+
+# {
+#     nr_umowy: {
+#         nazwa_programu: {
+#             marza_procentowa:
+#             stala_kwota:
+#             }
+#     }
+# }
+
+# Create embedded dictionary
+# embedded_dictionary = {
+#     details_dict['nr_umowy']: {
+#         details_dict['oprogramowanie']: (details_dict['marza_procentowa'], details_dict['stala_kwota'])}
+#     for details_dict in data['umowy']
+# }
+
+
+
+# i = 0
+# for record in wyniki_db:
+
+embedded_dictionary = {}
+for details_dict in data['umowy']:
+    nr_umowy = details_dict['nr_umowy']
+    oprogramowanie = details_dict['oprogramowanie']
+    marza_procentowa = details_dict['marza_procentowa']
+    stala_kwota = details_dict['stala_kwota']
+
+    if nr_umowy not in embedded_dictionary:
+        embedded_dictionary[nr_umowy] = {}
+
+    if oprogramowanie not in embedded_dictionary[nr_umowy]:
+        embedded_dictionary[nr_umowy][oprogramowanie] = []
+
+    embedded_dictionary[nr_umowy][oprogramowanie].append(marza_procentowa)
+    embedded_dictionary[nr_umowy][oprogramowanie].append(stala_kwota)
 def processRecord(record):
     zyski = []
     global i
@@ -60,79 +134,6 @@ def processRecord(record):
     return zyski
 
 if __name__ == '__main__':
-
-    # Połączenie z bazą danych SQL Server
-    dw_connection = pyodbc.connect(config.dw_connection_data)
-
-    db_connection = pyodbc.connect(config.db_connection_data)
-
-    dw_cursor = dw_connection.cursor()
-    db_cursor = db_connection.cursor()
-
-    # Ładowanie danych z pliku JSON
-    with open('../../bulks/dane.json') as f:
-        data = json.load(f)
-
-    # Iteracja przez dane z umów
-    db_cursor.execute("""
-    SELECT F.Numer_faktury, UL.Numer_umowy AS Nr_umowy_licencyjnej, F.Data_wystawienia AS Data_wystawienia_faktury, F.Kwota_należności, UL.Nazwa_programu, UD.Nr_umowy
-    FROM Dystrybucja D
-    JOIN Umowy_dystrybucyjne UD ON D.Nr_umowy = UD.Nr_umowy
-    JOIN Umowy_licencyjne UL ON UD.ID_Sprzedawcy = UL.ID_Sprzedawcy AND UL.Data_zawarcia BETWEEN UD.Data_zawarcia AND UD.Data_wygaśnięcia
-    JOIN Faktury F ON UL.Numer_umowy = F.Numer_umowy
-    JOIN Programy P ON P.Nazwa_handlowa = UL.Nazwa_programu AND P.Nazwa_handlowa = D.Nazwa_handlowa
-    """)
-    wyniki_db = db_cursor.fetchall()
-
-    # zyski = []
-
-    ### DEBUG ###
-    # print(wyniki)
-    # print(len(wyniki))
-    # print(type(wyniki))
-    # print(type(wyniki[0]))
-    # print(type(wyniki[0][1]))
-
-    # print(data['umowy'])
-    # print(type(data['umowy']))
-    # print(type(data['umowy'][0]))
-
-    # dw_cursor.execute("SELECT ID_podpisania_umowy, Numer_umowy FROM Podpisanie_umowy_licencyjnej")
-    # wyniki_dw = dw_cursor.fetchall()
-
-    # {
-    #     nr_umowy: {
-    #         nazwa_programu: {
-    #             marza_procentowa:
-    #             stala_kwota:
-    #             }
-    #     }
-    # }
-
-    # Create embedded dictionary
-    # embedded_dictionary = {
-    #     details_dict['nr_umowy']: {
-    #         details_dict['oprogramowanie']: (details_dict['marza_procentowa'], details_dict['stala_kwota'])}
-    #     for details_dict in data['umowy']
-    # }
-
-    for details_dict in data['umowy']:
-        nr_umowy = details_dict['nr_umowy']
-        oprogramowanie = details_dict['oprogramowanie']
-        marza_procentowa = details_dict['marza_procentowa']
-        stala_kwota = details_dict['stala_kwota']
-
-        if nr_umowy not in embedded_dictionary:
-            embedded_dictionary[nr_umowy] = {}
-
-        if oprogramowanie not in embedded_dictionary[nr_umowy]:
-            embedded_dictionary[nr_umowy][oprogramowanie] = []
-
-        embedded_dictionary[nr_umowy][oprogramowanie].append(marza_procentowa)
-        embedded_dictionary[nr_umowy][oprogramowanie].append(stala_kwota)
-
-    # i = 0
-    # for record in wyniki_db:
 
     i = mp.Value('i', 0)
 
