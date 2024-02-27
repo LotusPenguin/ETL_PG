@@ -16,7 +16,7 @@ with open('dane.json') as f:
 
 # Iteracja przez dane z umów
 for umowa in data['umowy']:
-    db_cursor.execure("SELECT ")
+    db_cursor.execute("SELECT ")
 
 
 

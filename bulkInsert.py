@@ -1,6 +1,8 @@
 import pyodbc
 import os
-database_connection_string = 'DRIVER={SQL Server Native Client 11.0};SERVER=BLAZEJ-PC;DATABASE=SoftwareDB;Trusted_Connection=yes;'
+import PYTHON.etl.config as config
+
+database_connection_string = config.db_connection_data
 connection = pyodbc.connect(database_connection_string)
 db_cursor = connection.cursor()
 insertname = "Insert.sql"
@@ -42,7 +44,7 @@ os.chdir("../DB_SQL")
 # filecontent = f.read()
 # db_cursor.execute(str(filecontent))
 
-os.system('sqlcmd /S BLAZEJ-PC /d SoftwareDB -E -i Insert.sql -f 65001')
+os.system(f'sqlcmd /S {config.server_name} /d SoftwareDB -E -i Insert.sql -f 65001')
 
 os.chdir("../bulks")
 
