@@ -1,2 +1,4 @@
 .idea
 dane.json
+__pycache__
+config.py
