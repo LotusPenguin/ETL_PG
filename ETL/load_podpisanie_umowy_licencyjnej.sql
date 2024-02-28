@@ -30,7 +30,7 @@ GO
                         ST.Kwota_platnosci,
 						(SELECT ID_sprzedawcy FROM Sprzedawcy WHERE Nazwa = (SELECT Nazwa FROM SoftwareDB.dbo.Sprzedawcy WHERE ID = ST.ID_Sprzedawcy)),
                         (SELECT ID_klienta FROM Klienci WHERE Nazwa = (SELECT Nazwa FROM SoftwareDB.dbo.Klienci WHERE ID = ST.ID_Klienta)),
-                        (SELECT ID_programu FROM Programy WHERE Nazwa_handlowa = ST.Nazwa_handlowa),
+                        (SELECT ID_programu FROM Programy WHERE Nazwa_handlowa = ST.Nazwa_handlowa AND Czy_aktywny = 1),
 						(SELECT ID_junk FROM JUNK WHERE Plan_platnosci = ST.Plan_platnosci),
                         ST.Nr_umowy
 					);
