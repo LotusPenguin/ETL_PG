@@ -7,7 +7,8 @@ import multiprocessing as mp
 
 def write_to_file(file_name, to_write):
     with open(file_name, "w", encoding="utf-8") as file:
-        file.writelines(to_write)
+        for line in to_write:
+            file.write(line[0] + '\n')
 
 
 def CreateBulkInsertQuery(tableName, filename):
@@ -15,7 +16,7 @@ def CreateBulkInsertQuery(tableName, filename):
     USE HDSoftware;
     BULK INSERT dbo.{tableName} 
     FROM '{os.getcwd()}\\{filename}' 
-    WITH (FIELDTERMINATOR='|');
+    WITH (FIELDTERMINATOR='|')
     """
 
 def init(args):
@@ -130,7 +131,7 @@ def processRecord(record):
     # dw_cursor.execute("INSERT INTO Zyski_miesieczne (ID_podpisania_umowy, Data_uzyskania_zysku, Zysk) VALUES (?, ?, ?)",
     #                   (id_podpisania_umowy, data_uzyskania_zysku, zysk))
     if i.value % 1000 == 0:
-        print(f"Processed record {i}")
+        print(f"Processed record {i.value}")
     return zyski
 
 if __name__ == '__main__':
@@ -142,23 +143,23 @@ if __name__ == '__main__':
     pool.close()
     pool.join()
 
-
-    write_to_file("tempfile.bulk", zyski.get())
+    zyski_output = zyski.get()
+    write_to_file("tempfile.bulk", zyski_output)
 
     merge_query = ("""
-    IF (OBJECT_ID('vETLFZyski') IS NOT NULL) DROP VIEW vETLFZyski;
-    GO
+    IF OBJECT_ID('#temporary_table') IS NOT NULL
+    DROP TABLE #temporary_table;
     
-    CREATE VIEW vETLFZyski
-    AS
-    ID_podpisania_umowy, Data_uzyskania_zysku, Zysk;
+    CREATE TABLE #temporary_table(
+    ID_podpisania_umowy int, 
+    Data_uzyskania_zysku int, 
+    Zysk float);
     """
-                   + CreateBulkInsertQuery("vETLFZyski", "tempfile.bulk") +
+                   + CreateBulkInsertQuery("#temporary_table", "tempfile.bulk") +
                    """
-    GO
     
     MERGE INTO Zyski_miesieczne as TT
-    USING vETLFZyski as ST
+    USING #temporary_table as ST
         ON TT.ID_podpisania_umowy = ST.ID_podpisania_umowy
         AND TT.Data_uzyskania_zysku = ST.Data_uzyskania_zysku
             WHEN NOT MATCHED BY TARGET THEN
@@ -167,13 +168,12 @@ if __name__ == '__main__':
             WHEN NOT MATCHED BY SOURCE THEN
                 DELETE;
                 
-    DROP VIEW vETLFZyski;
+    DROP TABLE #temporary_table;
     """)
 
     dw_cursor.execute(merge_query)
 
     os.remove("tempfile.bulk")
-    input()
 
     # Potwierdzenie transakcji
     dw_connection.commit()

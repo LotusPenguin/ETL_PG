@@ -6,7 +6,7 @@ IF (object_id('vETLDimSprzedawcy') is not null) DROP VIEW vETLDimSprzedawcy;
 GO
 CREATE VIEW vETLDimSprzedawcy
 AS
-SELECT DISTINCT
+SELECT
 	[Nazwa] = [Nazwa]
 FROM SoftwareDB.dbo.Sprzedawcy;
 GO
@@ -16,8 +16,6 @@ USING vETLDimSprzedawcy AS ST
 ON TT.Nazwa = ST.Nazwa
 WHEN NOT MATCHED BY TARGET THEN
     INSERT (Nazwa)
-    VALUES (ST.Nazwa)
-WHEN NOT MATCHED BY SOURCE THEN
-    DELETE;
+    VALUES (ST.Nazwa);
 
 DROP VIEW vETLDimSprzedawcy;

@@ -18,8 +18,6 @@ ON TT.Nazwa = ST.Nazwa
 AND TT.os_fiz_or_firma = ST.os_fiz_or_firma
 WHEN NOT MATCHED BY TARGET THEN
     INSERT (Nazwa,os_fiz_or_firma)
-    VALUES (ST.Nazwa,ST.os_fiz_or_firma)
-WHEN NOT MATCHED BY SOURCE THEN
-    DELETE;
+    VALUES (ST.Nazwa,ST.os_fiz_or_firma);
 
 DROP VIEW vETLDimKlienci;

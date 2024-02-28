@@ -5,7 +5,7 @@ If (object_id('vETLFPodpisanieUmowyLicencyjnej') is not null) Drop view vETLFPod
 GO
 CREATE VIEW vETLFPodpisanieUmowyLicencyjnej
 AS
-SELECT 
+SELECT DISTINCT
         ID_Sprzedawcy = umowy.ID_sprzedawcy,
         Nazwa_handlowa = umowy.Nazwa_programu,
         Data_zawarcia = umowy.Data_zawarcia,
@@ -21,7 +21,7 @@ GO
 	MERGE INTO Podpisanie_umowy_Licencyjnej as TT
 	USING vETLFPodpisanieUmowyLicencyjnej as ST
 		ON TT.Numer_umowy = ST.Nr_umowy
-			WHEN Not Matched
+			WHEN Not Matched BY TARGET
 				THEN
 					INSERT
 					Values (
@@ -33,8 +33,4 @@ GO
                         (SELECT ID_programu FROM Programy WHERE Nazwa_handlowa = ST.Nazwa_handlowa),
 						(SELECT ID_junk FROM JUNK WHERE Plan_platnosci = ST.Plan_platnosci),
                         ST.Nr_umowy
-					)
-			WHEN Not Matched By Source
-				Then
-					DELETE
-			;
+					);

@@ -16,8 +16,6 @@ USING vETLDimJunk AS ST
 ON TT.Plan_platnosci = ST.Plan_płatności
 WHEN NOT MATCHED BY TARGET THEN
     INSERT (Plan_platnosci)
-    VALUES (ST.Plan_płatności)
-WHEN NOT MATCHED BY SOURCE THEN
-    DELETE;
+    VALUES (ST.Plan_płatności);
 
 DROP VIEW vETLDimJunk;
