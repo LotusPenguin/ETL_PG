@@ -7,7 +7,7 @@ DECLARE @StartDate DATE;
 DECLARE @EndDate DATE;
 
 -- Step b:  Fill the variable with values for the range of years needed
-SELECT @StartDate = '1980-01-01', @EndDate = '2030-12-31';
+SELECT @StartDate = '1980-01-01', @EndDate = '2040-12-31';
 
 -- Step c:  Use a while loop to add dates to the table
 DECLARE @DateInProcess DATETIME = @StartDate;
